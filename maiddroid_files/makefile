@@ -1,4 +1,4 @@
-sG1_TP2_maiddroid: main.o sim.o visual.o
+G1_TP2_maiddroid: main.o sim.o visual.o
 	g++ -Wall -o maiddroid main.o sim.o visual.o
 	
 main.o: main.cpp sim.h struct.h const.h
