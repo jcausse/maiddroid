@@ -4,7 +4,7 @@ int parseCmdLine(int argc, char* argv[], int(*pCallback) (char*, char*)) {//cant
     int i = 1;//la primer palabra,con indice 0, es el nombre del programa, y esta no se cuenta
     int datos = 0;//params+opciones
     for (i = 1; i < argc; ++i) {
-        if (argv[i][0] == '-') {//si hay opcion   
+        if (argv[i][0] == '-') {//si hay opcion
             if (i != (argc - 1)) {//si no es el ultimo elemento que recibe
                 if (argv[i][1] == NULL) {//si es una clave sin valor
                     return ERROR;
@@ -42,7 +42,7 @@ int parseCallback(char* key, char* value) {//0 si no es valido 1 si si
     }
     else {//es una opcion
         return NOPARAM;//voy a hacer que no acepte opciones
-        if (key[1] == NULL) {//clave vacia devuelve error
+        /*if (key[1] == NULL) {//clave vacia devuelve error
             return NOPARAM;
         }
         else {
@@ -53,6 +53,7 @@ int parseCallback(char* key, char* value) {//0 si no es valido 1 si si
                 return OK;
             }
         }
+         */
     }
 }
 //////////////////////////////////////////////////////////////////////
@@ -65,7 +66,7 @@ double getAngleBetweenPoitns(Point* p1, Point* p2) {//calcula el angulo entre do
 }
 //////////////////////////////////////////////////////////////////////////
 Point translatePoint(Point* p, double distance, double angle) {//traslada un punto una distancia en cierto angulo
-    Point pmov;//math.h usa radianes 
+    Point pmov;//math.h usa radianes
     pmov.x = ((p->x) + cos(angle));//(cos(angle)<0?-cos(angle): cos(angle))
     pmov.y = ((p->y) + sin(angle));//(sin(angle)<0?-sin(angle): sin(angle))
     return pmov;
@@ -146,7 +147,9 @@ Floor* createfloor(long largo, long ancho) {//crea el piso
 /// ////////////////////////////////////////////////////////////
 void deletefloor(Floor* f) {//borra el piso
     if (f) {
-        free(f->tiles);
+        if (f->tiles != NULL) {
+            //free(f->tiles);
+        }
         free(f);
     }
     return;
@@ -162,15 +165,13 @@ Robot* createrobot(long largo, long ancho, long robotcant) {
             (robot + i)->y = (rand() % largo + 0);
             (robot + i)->angle = (rand() % 360 + 0);//ahora lo paso a radianes pq math.h usa radianes
             (robot + i)->angle = (robot->angle * 2 * PI / 360);
-            //printf("x:%lf y:%lf angulo en radianes:%lf",((robot + i)->x),((robot + i)->y),((robot + i)->angle));
         }
-        
+
     }
     else {
         free(robot);
         robot = NULL;
     }
-    //printf("\n");
     return robot;
 }
 ////////////////////////////////////////////////////////////////
@@ -188,9 +189,7 @@ bool movrobot(Robot* robot_p, int b, long largo, long ancho, Floor* f) {
     *((f->tiles) + ((int)(robot_p + b)->x) + ((int)(robot_p + b)->y) * ancho) = LIMPIO;
     aux.x = (robot_p + b)->x;
     aux.y = (robot_p + b)->y;
-    //printf("%f %f\n", aux.x, aux.y);
     aux = translatePoint(&aux, DISTANCE, (robot_p + b)->angle);
-    //printf("%f %f\n", aux.x, aux.y);
     if ((aux.x < 0) || (aux.y < 0) || (aux.x > ancho) || (aux.y > largo)) {//si se sale del piso, randomizo direccion y el proximo turno lo hago avanzar
         (robot_p + b)->angle = (rand() % 360 + 0);//ahora lo paso a radianes pq math.h usa radianes
         (robot_p + b)->angle = ((robot_p + b)->angle * 2 * PI / 360);
@@ -213,9 +212,8 @@ bool movrobot(Robot* robot_p, int b, long largo, long ancho, Floor* f) {
             break;
         }
     }
-    /* printf("%d", *((piso->tiles) + j + i * largo));*/
-     //el casteo de double a int redondea hacia abajo si es positivo y hacia arriba si es negativo
-     //printf("x:%lf y:%lf angulo en radianes:%lf  x:%d  y:%d\n", (arr[b]->x), (arr[b]->y), (arr[b]->angle), (int)(arr[b]->x), (int)(arr[b]->y));
+    //el casteo de double a int redondea hacia abajo si es positivo y hacia arriba si es negativo
+
     return limpio;
 }
 /////////////////////////////////////////////////////////////////

@@ -1,7 +1,7 @@
 #ifndef CONST_H
 #define CONST_H
 
-#define ERROR -1;
+#define ERROR -1
 #define NOPARAM 0
 #define OK 1
 #define SUCIO 1

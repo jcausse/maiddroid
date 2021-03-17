@@ -1,20 +1,13 @@
-#pragma once
-/*File:   input.h
-* Author : Alejandro Alatsis
-*
-* Created on 8 de octubre de 2020, 18 : 44
-* */
-
 #ifndef SIM_H
 #define SIM_H
-//#include<cstdlib>
-#include<stdio.h>
-#include<stdbool.h>
-#include<string.h>
-#include<time.h>
-#include<stdlib.h>
-#include<stddef.h>
-#include<math.h>
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <string.h>
+#include <time.h>
+#include <stdlib.h>
+#include <stddef.h>
+#include <math.h>
 //////////////////////////////////////////////////////////////
 #include "struct.h"
 #include "const.h"
