@@ -37,7 +37,7 @@ int parseCmdLine(int argc, char* argv[], int(*pCallback) (char*, char*)) {//cant
 ////////////////////////////////////////////////////////////
 int parseCallback(char* key, char* value) {//0 si no es valido 1 si si
 
-    if ((key == NULL)) {//es un parametro
+    if (key == NULL) {//es un parametro
         return OK;
     }
     else {//es una opcion
