@@ -1,8 +1,6 @@
 #include "visual.h"
 
 allegroPtrs_t* allegroInit(int ancho, int largo, int modo, float scaleFactor){
-    bool error = false;
-
     //DECLARACIONES DE ELEMENTOS A UTILIZAR
     ALLEGRO_DISPLAY * display = NULL;
     ALLEGRO_EVENT_QUEUE *eventQueue = NULL;
@@ -52,7 +50,7 @@ allegroPtrs_t* allegroInit(int ancho, int largo, int modo, float scaleFactor){
         return NULL;
     }
     robot = al_load_bitmap("./maiddroid_files/assets/robot.png");
-    if (!baldosaSucia){
+    if (!robot){
         fprintf(stderr, "failed to load robot.png\n");
         al_destroy_font(font20);
         al_destroy_bitmap(baldosaLimpia);
