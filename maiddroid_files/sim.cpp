@@ -6,7 +6,7 @@ int parseCmdLine(int argc, char* argv[], int(*pCallback) (char*, char*)) {//cant
     for (i = 1; i < argc; ++i) {
         if (argv[i][0] == '-') {//si hay opcion
             if (i != (argc - 1)) {//si no es el ultimo elemento que recibe
-                if (argv[i][1] == NULL) {//si es una clave sin valor
+                if (argv[i][1] == '\0') {//si es una clave sin valor
                     return ERROR;
                 }
                 else {
